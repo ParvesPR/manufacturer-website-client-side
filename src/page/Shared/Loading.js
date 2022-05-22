@@ -2,12 +2,8 @@ import React from 'react';
 
 const Loading = () => {
     return (
-        <div>
-            <button type="button" class="bg-indigo-500 ..." disabled>
-                <svg className="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
-                </svg>
-                Loading...
-            </button>
+        <div className='h-screen flex justify-center items-center'>
+            <button class="btn loading text-white bg-indigo-500">loading...</button>
         </div>
     );
 };

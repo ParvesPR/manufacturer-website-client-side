@@ -1,19 +1,58 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        if (gUser || user) {
+            navigate(from, { replace: true });
+        };
+    }, [from, gUser, navigate, user]);
+
+    if (user || gUser) {
+        console.log(user || gUser)
+    };
+    if (gLoading || loading) {
+        return <Loading></Loading>
+    }
+    let signInError;
+
+
+
+    if (gError || error) {
+        signInError = <p className='text-red-500 font-semibold text-sm mb-3'>{error?.message || gError.message}</p>
+    };
+
+    const onSubmit = data => {
+        console.log(data);
+        signInWithEmailAndPassword(data.email, data.password)
+    };
 
     return (
         <div className='flex h-screen justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="text-center font-bold text-2xl">Login</h2>
+                    <h2 className="text-center font-bold text-2xl uppercase">Login</h2>
 
                     {/* EMAIL FIELD */}
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -25,7 +64,7 @@ const Login = () => {
                                 {...register("email", {
                                     required: {
                                         value: true,
-                                        message: 'Email is required'
+                                        message: 'Enter your Email'
                                     },
                                     pattern: {
                                         value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
@@ -52,7 +91,7 @@ const Login = () => {
                                 {...register("password", {
                                     required: {
                                         value: true,
-                                        message: 'Password is required'
+                                        message: 'Enter your Password'
                                     },
                                     minLength: {
                                         value: 6,
@@ -66,6 +105,7 @@ const Login = () => {
 
                             </label>
                         </div>
+                        {signInError}
                         <input
                             className='btn w-full max-w-xs'
                             value="Login"
@@ -74,7 +114,7 @@ const Login = () => {
                     </form>
 
                     <div className="divider">OR</div>
-                    <button className="btn btn-outline"
+                    <button onClick={() => signInWithGoogle()} className="btn btn-outline"
                     >Continue with Google</button>
                 </div>
             </div>
