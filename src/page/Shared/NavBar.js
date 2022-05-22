@@ -1,9 +1,6 @@
-import { signOut } from 'firebase/auth';
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
-import auth from '../../firebase.init';
 
 const NavBar = () => {
     const menuItems = <>
@@ -13,7 +10,7 @@ const NavBar = () => {
         <li><Link to="/reviews">Reviews</Link></li>
         <li><Link to="/blog">Blogs</Link></li>
         <li><Link to="/login">Login</Link></li>
-       
+
     </>
     return (
         <div>

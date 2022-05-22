@@ -1,58 +1,71 @@
-import React, { useEffect } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import React from 'react';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
-const Login = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
 
+const SignUp = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [
-        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useSignInWithEmailAndPassword(auth);
-
+    ] = useCreateUserWithEmailAndPassword(auth);
+    const { register, formState: { errors }, handleSubmit } = useForm();
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const navigate = useNavigate();
-    const location = useLocation();
-    let from = location.state?.from?.pathname || "/";
 
-    useEffect(() => {
-        if (gUser || user) {
-            navigate(from, { replace: true });
-        };
-    }, [from, gUser, navigate, user]);
+    let signUpError;
+    if (gLoading || loading || updating) {
+        return <Loading></Loading>
+    };
 
     if (user || gUser) {
-        console.log(user || gUser)
-    };
-    if (gLoading || loading) {
-        return <Loading></Loading>
+        navigate('/home')
     }
-    let signInError;
 
-
-
-    if (error || gError) {
-        signInError = <p className='text-red-500 font-semibold text-sm mb-3'>{error?.message || gError.message}</p>
+    if (error || gError || updateError) {
+        signUpError = <p className='text-red-500 font-semibold text-sm mb-3'>{error?.message || gError.message || updateError}</p>
     };
 
-    const onSubmit = data => {
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.name });
         console.log(data);
-        signInWithEmailAndPassword(data.email, data.password)
     };
-
     return (
         <div className='flex h-screen justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="text-center font-bold text-2xl uppercase">Login</h2>
+                    <h2 className="text-center font-bold text-2xl">Sign Up</h2>
 
-                    {/* EMAIL FIELD */}
                     <form onSubmit={handleSubmit(onSubmit)}>
+                        {/* NAME FIELD */}
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input
+                                type="name"
+                                placeholder="Name"
+                                className="input input-bordered w-full max-w-xs"
+                                {...register("name", {
+                                    required: {
+                                        value: true,
+                                        message: 'Enter Your Name'
+                                    },
+                                })}
+                            />
+                            <label className="label">
+                                {errors.name?.type === 'required' && <span className="label-text-alt font-semibold text-red-500">{errors.name.message}</span>}
+                                {errors.name?.type === 'pattern' && <span className="label-text-alt font-semibold text-red-500">{errors.name.message}</span>}
+                            </label>
+                        </div>
+
+                        {/* EMAIL FIELD */}
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -64,7 +77,7 @@ const Login = () => {
                                 {...register("email", {
                                     required: {
                                         value: true,
-                                        message: 'Enter your Email'
+                                        message: 'Enter Your Email'
                                     },
                                     pattern: {
                                         value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
@@ -75,7 +88,6 @@ const Login = () => {
                             <label className="label">
                                 {errors.email?.type === 'required' && <span className="label-text-alt font-semibold text-red-500">{errors.email.message}</span>}
                                 {errors.email?.type === 'pattern' && <span className="label-text-alt font-semibold text-red-500">{errors.email.message}</span>}
-
                             </label>
                         </div>
 
@@ -91,7 +103,7 @@ const Login = () => {
                                 {...register("password", {
                                     required: {
                                         value: true,
-                                        message: 'Enter your Password'
+                                        message: 'Password'
                                     },
                                     minLength: {
                                         value: 6,
@@ -102,19 +114,20 @@ const Login = () => {
                             <label className="label">
                                 {errors.password?.type === 'required' && <span className="label-text-alt font-semibold text-red-500">{errors.password.message}</span>}
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt font-semibold text-red-500">{errors.password.message}</span>}
-
                             </label>
                         </div>
-                        {signInError}
+
+                        {signUpError}
                         <input
                             className='btn w-full max-w-xs'
-                            value="Login"
+                            value="Sign up"
                             type="submit" />
-                        <p className='text-md mt-3'>New to APAR? <Link className='text-primary' to="/signup">Create an Account</Link></p>
+                        <p className='text-md mt-3'>Already have an Account? <Link className='text-primary' to="/login">Please Login</Link></p>
                     </form>
 
                     <div className="divider">OR</div>
-                    <button onClick={() => signInWithGoogle()} className="btn btn-outline"
+                    <button className="btn btn-outline"
+                        onClick={() => signInWithGoogle()}
                     >Continue with Google</button>
                 </div>
             </div>
@@ -122,4 +135,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;

@@ -3,6 +3,7 @@ import './App.css';
 import Home from './page/Home/Home';
 import Purchase from './page/Home/Purchase';
 import Login from './page/Login/Login';
+import SignUp from './page/Login/SignUp';
 import NavBar from './page/Shared/NavBar';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/home/:id' element={<Purchase></Purchase>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/signup' element={<SignUp></SignUp>}></Route>
       </Routes>
     </div>
   );
