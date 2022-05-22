@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "_id": 1,
         "name": "Brake Kit",
         "image": "https://redparts.woocommerce.themeforest.scompiler.ru/theme/wp-content/uploads/2021/01/product-23-1-300x300.jpg",
         "price": 569,
@@ -9,7 +9,7 @@
         "description": "Designed for road and track use. This big brake kit features optimum braking performance, attractive looks, easy installation and a cost-effective price."
     },
     {
-        "id": 2,
+        "_id": 2,
         "name": "Glossy Gray 19″ Aluminum Wheel AR-19",
         "image": "https://redparts.woocommerce.themeforest.scompiler.ru/theme/wp-content/uploads/2021/01/product-4-1.jpg",
         "price": 589,
@@ -18,17 +18,8 @@
         "description": "Wheels is one of the top-rated elegant alloys that will undoubtedly enhance the look of your vehicle! This intricate patterned design is highlighted by 8 classic silver and black glasslike sculpted spokes."
     },
     {
-        "id": 3,
+        "_id": 3,
         "name": "Specter Brake Kit",
-        "image": "https://redparts.woocommerce.themeforest.scompiler.ru/theme/wp-content/uploads/2021/01/product-22-1.jpg",
-        "price": 799,
-        "minimum": 40,
-        "available": 127,
-        "description": "Wheels is one of the top-rated elegant alloys that will undoubtedly enhance the look of your vehicle! This intricate patterned design is highlighted by 8 classic silver and black glasslike sculpted spokes."
-    },
-    {
-        "id": 4,
-        "name": "Set of Four 19 Inch Spiked Tires",
         "image": "https://redparts.woocommerce.themeforest.scompiler.ru/theme/wp-content/uploads/2021/01/product-22-1.jpg",
         "price": 799,
         "minimum": 40,
