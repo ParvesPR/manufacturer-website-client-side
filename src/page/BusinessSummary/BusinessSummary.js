@@ -1,6 +1,6 @@
 import React from 'react';
 import './BusinessSummary.css';
-import { BeakerIcon, GlobeIcon, ThumbUpIcon, UserGroupIcon } from '@heroicons/react/solid'
+import {GlobeIcon, ThumbUpIcon, UserGroupIcon } from '@heroicons/react/solid'
 
 const BusinessSummary = () => {
     return (

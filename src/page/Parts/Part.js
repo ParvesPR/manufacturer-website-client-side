@@ -1,9 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Product = ({ product }) => {
+const Part = ({ product }) => {
     const { _id, image, name, description, minimum, available, price } = product;
-
     const navigate = useNavigate();
 
     const navigateToPurchase = id => {
@@ -28,5 +27,4 @@ const Product = ({ product }) => {
         </section>
     );
 };
-
-export default Product;
+export default Part;

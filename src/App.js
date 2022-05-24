@@ -7,6 +7,7 @@ import Login from './page/Login/Login';
 import RequireAuth from './page/Login/RequireAuth';
 import SignUp from './page/Login/SignUp';
 import Parts from './page/Parts/Parts';
+import Footer from './page/Shared/Footer';
 import NavBar from './page/Shared/NavBar';
 
 function App() {
@@ -16,16 +17,17 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
-        <Route path='/home/:id' element={
+        <Route path='/parts' element={<Parts></Parts>}></Route>
+        <Route path='/parts/:id' element={
           <RequireAuth>
             <Purchase></Purchase>
           </RequireAuth>
         }></Route>
-        <Route path='/parts' element={<Parts></Parts>}></Route>
         <Route path='/business' element={<BusinessSummary></BusinessSummary>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }
