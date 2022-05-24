@@ -1,125 +1,133 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const Purchase = () => {
     const { id } = useParams();
     const [products, setProducts] = useState({});
+    const [num, setNum] = useState(30);
     const [user] = useAuthState(auth);
-    const { register, handleSubmit } = useForm();
 
-    let cost;
-    let minimum;
-    let totalPrice;
     useEffect(() => {
         fetch(`http://localhost:5000/parts/${id}`)
             .then(res => res.json())
             .then(data => setProducts(data))
-    }, [id]);
+    }, [products, id]);
 
-    const onSubmit = data => {
-        cost = products.price;
-        minimum = data.minimum;
-        totalPrice = cost * minimum;
-        console.log(data)
+    const incNum = () => {
+        if (num < products.available) {
+            setNum(Number(num) + 1);
+        }
+    };
+    const decNum = () => {
+        if (num > 30) {
+            setNum(num - 1);
+        }
+    }
+    const handleChange = (e) => {
+        setNum(e.target.value);
+    };
+
+    const totalPrice = parseInt(num) * parseInt(products.price);
+
+    const handleOrder = event => {
+        event.preventDefault()
+        const order = {
+            productName: products.name,
+            email: user.email,
+            price: totalPrice,
+            quantity: event.target.quantity.value,
+            phone: event.target.phone.value,
+            address: event.target.address.value
+        }
+
+
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    toast.success('Order success')
+                    event.target.reset();
+                }
+            })
     }
 
 
     return (
         <section className='px-10'>
-            <div className="h ero min-h-screen bg-base-100">
-                <div className="hero-content flex-col lg:flex-row">
-                    <div className="text-center lg:text-left">
-                        <h1 className="text-3xl font-bold">Product Name: <span className='text-purple-500'>{products.name}</span>
-                        </h1>
-                        <img className='w-48' src={products.image} alt="" />
-                        <p className="py-4">{products.description}</p>
-                        <div>
-                            <p className='text-lg font-bold text-red-700'>Min. Order: <span classNameName='text-slate-400'>{products.minimum} pcs.</span></p>
-                            <p className='text-lg font-bold text-red-700'>Stock: <span className='text-lg font-bold text-purple-500'>{products.available}</span></p>
-                            <p className='text-lg font-bold text-red-700'>Price: <span className='text-lg font-bold text-gray-500'>${products.price}</span></p>
+            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 my-16 gap-5'>
+                <div className="card my-16 lg:max-w-lg  lg:card-side bg-base-100">
+                    <figure>
+                        <img className='mx-12 w-2/4 lg:w-full' src={products.image} alt="{products.name}" />
+                    </figure>
+                    <div className="card-body">
+                        <h2 className="card-title text-2xl text-purple-400 font-bold mb-4">{products.name}</h2>
+                        <p className='text-xl font-bold'>Stock: <span className='text-green-400'>{products.available}</span></p>
+                        <p className='text-xl font-bold'>Minimum Order: <span className='text-green-400'>{products.minimum}</span></p>
+                        <p className='text-xl font-bold'>Price per unit: <span className='text-green-400'>{products.price}</span></p>
+                        <div className="col-xl-1">
+                            <div className="input-group">
+                                <div className="input-group-prepend">
+                                    <button className="btn btn-outline-primary" type="button" onClick={decNum}>-</button>
+                                </div>
+                                <input type="number" className="form-control w-12 text-center" value={num} onChange={handleChange} />
+                                <div className="input-group-prepend">
+                                    <button className="btn btn-outline-primary" type="button" onClick={incNum}>+</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <form className='mx-auto p-6 card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100' onSubmit={handleSubmit(onSubmit)}>
-                        <div className="form-control w-full max-w-xs">
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
-                            <input
-                                value={user.displayName}
-                                type="name"
-                                className="input input-bordered w-full max-w-xs"
-                                {...register("name")}
-                                readOnly />
-                        </div>
 
-                        <div className="form-control w-full max-w-xs">
+                </div>
+                <div className="card md:max-w-md bg-base-100 shadow-xl">
+                    <div className="card-body">
+                        <h2 className="text-center text-3xl font-bold text-purple-300">Complete Your Order: <span className='text-2xl text-slate-700'>{products.name}</span></h2>
+                        <form onSubmit={handleOrder} className='w-full text-xl'>
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text font-semibold text-lg">Name</span>
                             </label>
-                            <input
-                                value={user.email}
-                                type="email"
-                                className="input input-bordered w-full max-w-xs"
-                                {...register("email")}
-                                readOnly />
-                        </div>
+                            <input type="text" readOnly value={user.displayName} className="input input-bordered w-full input-sm max-w-xs" />
 
-                        <div className="form-control w-full max-w-xs">
                             <label className="label">
-                                <span className="label-text">Minimum Order</span>
+                                <span className="label-text font-semibold text-lg">Email</span>
                             </label>
+                            <input type="email" readOnly value={user.email} className="input input-bordered w-full input-sm max-w-xs" />
 
-                            <input
-                                min={products.minimum}
-                                max={products.available}
-                                type="number"
-                                placeholder='55'
-                                className="input input-bordered w-full max-w-xs"
-                                {...register("minimum")}
-                            />
-                        </div>
-
-                        <div className="form-control w-full max-w-xs">
                             <label className="label">
-                                <span className="label-text">Address</span>
+                                <span className="label-text font-semibold text-lg">Product Quantity</span>
                             </label>
-                            <input
-                                type="text"
-                                placeholder='Your Address'
-                                className="input input-bordered w-full max-w-xs"
-                                {...register("address")}
-                                required />
-                        </div>
+                            <input type="number" min={products.minimum} max={products.available} name='quantity' readOnly value={num} className="input input-bordered input-sm w-full max-w-xs" />
 
-                        <div className="form-control w-full max-w-xs">
                             <label className="label">
-                                <span className="label-text">Phone No.</span>
+                                <span className="label-text font-semibold text-lg">Total Price</span>
                             </label>
-                            <input
-                                type="number"
-                                placeholder='Your Number'
-                                className="input input-bordered w-full max-w-xs"
-                                {...register("phone")}
-                                required />
-                        </div>
+                            <input type="number" readOnly value={totalPrice} className="input input-bordered input-sm w-full max-w-xs" />
 
-                        <div className="form-control w-full max-w-xs">
                             <label className="label">
-                                <span className="label-text">Price</span>
+                                <span className="label-text font-semibold text-lg">Address</span>
                             </label>
-                            <input
-                                type="text"
-                               value={products.price}
-                                placeholder='Price'
-                                className="input input-bordered w-full max-w-xs"
-                                {...register("price")}
-                                required />
-                        </div>
-                        <input type="submit" value="Order" className='btn btn-accent mt-3' />
-                    </form>
+                            <input type="text" name='address' className="input input-bordered w-full input-sm max-w-xs" required />
+
+                            <label className="label">
+                                <span className="label-text font-semibold text-lg">Phone</span>
+                            </label>
+                            <input type="number" name='phone' className="input input-bordered w-full input-sm max-w-xs mb-4" required />
+
+
+                            <input type="submit" value="Order" className="btn btn-accent uppercase w-full max-w-xs" />
+
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
