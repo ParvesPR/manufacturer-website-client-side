@@ -118,12 +118,6 @@ const Purchase = () => {
                                 {...register("price")}
                                 required />
                         </div>
-                        <div className="form-control w-full max-w-xs">
-                            <label className="label">
-                                <span className="label-text">Total Price: {totalPrice}</span>
-                            </label>
-                        </div>
-
                         <input type="submit" value="Order" className='btn btn-accent mt-3' />
                     </form>
                 </div>
