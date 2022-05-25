@@ -18,13 +18,13 @@ const DashBoard = () => {
             </div>
             <div className="drawer-side">
                 <label htmlFor="dash-drawer" className="drawer-overlay "></label>
-                <ul className="menu p-4 overflow-y-auto w-80 text-base-content uppercase bg-accent shadow-xl">
+                <ul className="menu p-4 overflow-y-auto w-80 text-white uppercase bg-accent ">
 
-                    <li><NavLink className='mt-2 font-black text-secondary' to="/dashboard/profile">My Profile</NavLink></li>
+                    <li><NavLink className='mt-2 font-black' to="/dashboard/profile">My Profile</NavLink></li>
 
                     <li>{!admin && <>
                         <NavLink className='mt-2 font-black' to="/dashboard/myorders">My Orders</NavLink>
-                        <NavLink className='mt-2 font-black text-secondary' to="/dashboard/myreview">My Reviews</NavLink>
+                        <NavLink className='mt-2 font-black' to="/dashboard/myreview">My Reviews</NavLink>
                     </>
                     }</li>
 
