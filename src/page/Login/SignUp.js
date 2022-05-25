@@ -26,7 +26,7 @@ const SignUp = () => {
         return <Loading></Loading>
     };
 
-    if (user || gUser) {
+    if (token) {
         navigate('/home')
     }
 
