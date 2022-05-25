@@ -91,7 +91,7 @@ const Purchase = () => {
                 <div className="card md:max-w-md bg-base-100 shadow-xl">
                     <div className="card-body">
                         <h2 className="text-center text-3xl font-bold text-purple-300">Complete Your Order: <span className='text-2xl text-slate-700'>{products.name}</span></h2>
-                        <form onSubmit={handleOrder} className='w-full text-xl'>
+                        <form onSubmit={handleOrder} className='form-control w-full text-xl'>
                             <label className="label">
                                 <span className="label-text font-semibold text-lg">Name</span>
                             </label>
