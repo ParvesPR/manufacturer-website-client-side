@@ -16,7 +16,7 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    const [token] = useToken();
+    const [token] = useToken(gUser || user);
 
     const navigate = useNavigate();
     const location = useLocation();
