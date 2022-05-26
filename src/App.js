@@ -6,6 +6,7 @@ import DashBoard from './page/DashBoard/DashBoard';
 import MyOrders from './page/DashBoard/MyOrders';
 import MyProfile from './page/DashBoard/MyProfile';
 import MyReview from './page/DashBoard/MyReview';
+import Users from './page/DashBoard/Users';
 import Home from './page/Home/Home';
 import Purchase from './page/Home/Purchase';
 import Login from './page/Login/Login';
@@ -34,6 +35,7 @@ function App() {
           </RequireAuth>
         }>
           <Route path='myorders' element={<MyOrders></MyOrders>}></Route>
+          <Route path='users' element={<Users></Users>}></Route>
           <Route path='profile' element={<MyProfile></MyProfile>}></Route>
           <Route path='myreview' element={<MyReview></MyReview>}></Route>
         </Route>
