@@ -18,7 +18,7 @@ const DashBoard = () => {
             </div>
             <div className="drawer-side">
                 <label htmlFor="dash-drawer" className="drawer-overlay "></label>
-                <ul className="menu p-4 overflow-y-auto w-80 text-white uppercase bg-accent ">
+                <ul className="menu p-4 overflow-y-auto w-80 text-white uppercase bg-[url('/src/assets/images/dashboard.jpg')] ">
 
                     <li><NavLink className='mt-2 font-black' to="/dashboard/profile">My Profile</NavLink></li>
 
@@ -29,10 +29,10 @@ const DashBoard = () => {
                     }</li>
 
                     <li>{admin && <>
-                        <NavLink className='mt-2 font-black text-white' to="/dashboard/users">All Users</NavLink>
-                        <NavLink className='mt-2 font-black text-white' to="/dashboard/manageorders">Manage Orders</NavLink>
-                        <NavLink className='mt-2 font-black text-white' to="/dashboard/manageproducts">Manage Products</NavLink>
-                        <NavLink className='mt-2 font-black text-white' to="/dashboard/addproduct">Add a Product</NavLink>
+                        <NavLink className='mt-2 font-semibold text-white btn btn-outline' to="/dashboard/users">All Users</NavLink>
+                        <NavLink className='mt-2 font-semibold text-white btn btn-outline ' to="/dashboard/manageorders">Manage Orders</NavLink>
+                        <NavLink className='mt-2 font-semibold text-white btn btn-outline ' to="/dashboard/manageproducts">Manage Products</NavLink>
+                        <NavLink className='mt-2 font-semibold text-white btn btn-outline ' to="/dashboard/addproduct">Add a Product</NavLink>
                     </>
                     }</li>
 

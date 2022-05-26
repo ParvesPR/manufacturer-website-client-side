@@ -2,6 +2,7 @@ import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import BusinessSummary from './page/BusinessSummary/BusinessSummary';
+import AddProduct from './page/DashBoard/AddProduct';
 import DashBoard from './page/DashBoard/DashBoard';
 import MyOrders from './page/DashBoard/MyOrders';
 import MyProfile from './page/DashBoard/MyProfile';
@@ -39,6 +40,11 @@ function App() {
           <Route path='users' element={
             <RequireAdmin>
               <Users></Users>
+            </RequireAdmin>
+          }></Route>
+          <Route path='addproduct' element={
+            <RequireAdmin>
+              <AddProduct></AddProduct>
             </RequireAdmin>
           }></Route>
           <Route path='profile' element={<MyProfile></MyProfile>}></Route>

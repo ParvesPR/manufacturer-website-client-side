@@ -34,8 +34,8 @@ const MyOrders = () => {
         <div>
             <h2 className='font-bold text-purple-500 my-5 text-2xl'>My Orders: <span className='text-red-600'>{orders.length}</span></h2>
 
-            <div class="overflow-x-auto">
-                <table class="table table-zebra w-full">
+            <div className="overflow-x-auto">
+                <table className="table table-zebra w-full">
 
                     <thead>
                         <tr>
@@ -53,7 +53,7 @@ const MyOrders = () => {
                                 <td>{order.productName}</td>
                                 <td>${order.price}</td>
                                 <td>{order.email}</td>
-                                <td><button class="btn btn-sm">Delete</button></td>
+                                <td><button className="btn btn-sm">Delete</button></td>
                             </tr>)
 
                         }
