@@ -10,6 +10,7 @@ import Users from './page/DashBoard/Users';
 import Home from './page/Home/Home';
 import Purchase from './page/Home/Purchase';
 import Login from './page/Login/Login';
+import RequireAdmin from './page/Login/RequireAdmin';
 import RequireAuth from './page/Login/RequireAuth';
 import SignUp from './page/Login/SignUp';
 import Parts from './page/Parts/Parts';
@@ -35,7 +36,11 @@ function App() {
           </RequireAuth>
         }>
           <Route path='myorders' element={<MyOrders></MyOrders>}></Route>
-          <Route path='users' element={<Users></Users>}></Route>
+          <Route path='users' element={
+            <RequireAdmin>
+              <Users></Users>
+            </RequireAdmin>
+          }></Route>
           <Route path='profile' element={<MyProfile></MyProfile>}></Route>
           <Route path='myreview' element={<MyReview></MyReview>}></Route>
         </Route>

@@ -21,7 +21,6 @@ const DashBoard = () => {
                 <ul className="menu p-4 overflow-y-auto w-80 text-white uppercase bg-accent ">
 
                     <li><NavLink className='mt-2 font-black' to="/dashboard/profile">My Profile</NavLink></li>
-                    <NavLink className='mt-2 font-black text-secondary' to="/dashboard/users">All Users</NavLink>
 
                     <li>{!admin && <>
                         <NavLink className='mt-2 font-black' to="/dashboard/myorders">My Orders</NavLink>
@@ -30,10 +29,10 @@ const DashBoard = () => {
                     }</li>
 
                     <li>{admin && <>
-                        <NavLink className='mt-2 font-black text-secondary' to="/dashboard/manageorders">Manage Orders</NavLink>
-                        
-                        <NavLink className='mt-2 font-black text-secondary' to="/dashboard/manageproducts">Manage Products</NavLink>
-                        <NavLink className='mt-2 font-black text-secondary' to="/dashboard/addproduct">Add a Product</NavLink>
+                        <NavLink className='mt-2 font-black text-white' to="/dashboard/users">All Users</NavLink>
+                        <NavLink className='mt-2 font-black text-white' to="/dashboard/manageorders">Manage Orders</NavLink>
+                        <NavLink className='mt-2 font-black text-white' to="/dashboard/manageproducts">Manage Products</NavLink>
+                        <NavLink className='mt-2 font-black text-white' to="/dashboard/addproduct">Add a Product</NavLink>
                     </>
                     }</li>
 
