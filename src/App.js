@@ -9,6 +9,7 @@ import ManageProducts from './page/DashBoard/ManageProducts';
 import MyOrders from './page/DashBoard/MyOrders';
 import MyProfile from './page/DashBoard/MyProfile';
 import MyReview from './page/DashBoard/MyReview';
+import Payment from './page/DashBoard/Payment';
 import Users from './page/DashBoard/Users';
 import Home from './page/Home/Home';
 import Purchase from './page/Home/Purchase';
@@ -40,6 +41,7 @@ function App() {
           </RequireAuth>
         }>
           <Route path='myorders' element={<MyOrders></MyOrders>}></Route>
+          <Route path='payment/:id' element={<Payment></Payment>}></Route>
           <Route path='users' element={
             <RequireAdmin>
               <Users></Users>
