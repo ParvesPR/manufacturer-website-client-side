@@ -1,6 +1,7 @@
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Blogs from './page/Blogs/Blogs';
 import BusinessSummary from './page/BusinessSummary/BusinessSummary';
 import AddProduct from './page/DashBoard/AddProduct';
 import DashBoard from './page/DashBoard/DashBoard';
@@ -71,6 +72,7 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/reviews' element={<Reviews></Reviews>}></Route>
+        <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <Toaster></Toaster>
