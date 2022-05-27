@@ -8,10 +8,10 @@ const DashBoard = () => {
     const [user] = useAuthState(auth);
     const [admin] = useAdmin(user)
     return (
-        <div className="drawer drawer-mobile">
+        <div className="drawer drawer-mobile bg-[url('/src/assets/images/dash-main.jpg')]">
             <input id="dash-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content px-12 my-10">
-                <h1 className='text-3xl font-bold text-purple-600 text-center uppercase'>Welcome to Dashboard</h1>
+                <h1 className='text-3xl font-bold text-white text-center uppercase'>Welcome to Dashboard</h1>
                 <Outlet></Outlet>
 
 

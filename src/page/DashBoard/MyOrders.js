@@ -23,7 +23,7 @@ const MyOrders = () => {
     }
     return (
         <div>
-            <h2 className='font-bold text-purple-500 my-5 text-2xl'>My Orders: <span className='text-red-600'>{orders.length}</span></h2>
+            <h2 className='font-bold text-white my-5 text-2xl'>My Orders: <span className='text-red-400'>{orders.length}</span></h2>
 
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import AllProducts from './AllProducts';
+import DeleteProduct from './DeleteProduct';
 
 const ManageProducts = () => {
     const [manageProduct, setManageProduct] = useState(null)
@@ -16,7 +17,7 @@ const ManageProducts = () => {
     }
     return (
         <div>
-            <h2 className='font-bold text-slate-500 my-5 text-2xl text-center'>All Products: {products.length}</h2>
+            <h2 className='font-bold text-white my-5 text-2xl text-center'>All Products: {products.length}</h2>
 
             <div className="overflow-x-auto">
 
@@ -43,6 +44,11 @@ const ManageProducts = () => {
                     </tbody>
                 </table>
             </div>
+            {manageProduct && <DeleteProduct
+                manageProduct={manageProduct}
+                setManageProduct={setManageProduct}
+                refetch={refetch}
+            ></DeleteProduct>}
         </div>
     );
 };

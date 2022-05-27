@@ -15,7 +15,7 @@ const AllProducts = ({ index, product, setManageProduct }) => {
             <td>{name}</td>
             <td>{price}</td>
             <td>
-            <label onClick={() => setManageProduct(product)} htmlFor="delete-confirm" className="btn btn-xs btn-error text-white"> Delete</label>
+            <label onClick={() => setManageProduct(product)} htmlFor="delete-product" className="btn btn-xs btn-error text-white">Delete Product</label>
             </td>
         </tr>
     );
