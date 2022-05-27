@@ -24,7 +24,7 @@ const DashBoard = () => {
 
                     <li>{!admin && <>
                         <NavLink className='mt-2 font-black' to="/dashboard/myorders">My Orders</NavLink>
-                        <NavLink className='mt-2 font-black' to="/dashboard/myreview">My Reviews</NavLink>
+                        <NavLink className='mt-2 font-black' to="/dashboard/myreview">Add a Reviews</NavLink>
                     </>
                     }</li>
 
