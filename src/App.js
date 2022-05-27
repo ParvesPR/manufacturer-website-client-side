@@ -5,6 +5,7 @@ import BusinessSummary from './page/BusinessSummary/BusinessSummary';
 import AddProduct from './page/DashBoard/AddProduct';
 import DashBoard from './page/DashBoard/DashBoard';
 import ManageOrders from './page/DashBoard/ManageOrders';
+import ManageProducts from './page/DashBoard/ManageProducts';
 import MyOrders from './page/DashBoard/MyOrders';
 import MyProfile from './page/DashBoard/MyProfile';
 import MyReview from './page/DashBoard/MyReview';
@@ -51,6 +52,11 @@ function App() {
           <Route path='manageorders' element={
             <RequireAdmin>
               <ManageOrders></ManageOrders>
+            </RequireAdmin>
+          }></Route>
+          <Route path='manageproducts' element={
+            <RequireAdmin>
+              <ManageProducts></ManageProducts>
             </RequireAdmin>
           }></Route>
           <Route path='profile' element={<MyProfile></MyProfile>}></Route>

@@ -29,9 +29,9 @@ const DeleteConfirm = ({ cancel, setCancel, refetch }) => {
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Are You sure you want to cancel <span className='text-green-700'>{productName}</span>!</h3>
-                    <p className="py-4">This order can not be restore!</p>
+                    <p className="py-4">This Product can not be restore!</p>
                     <div className="modal-action">
-                        <button onClick={() => handleDelete(email)} className='btn btn-md btn-error text-white'>Cancel order</button>
+                        <button onClick={() => handleDelete(email)} className='btn btn-md btn-error text-white'>Cancel Product</button>
                         <label htmlFor="delete-confirm" className="btn btn-md">Close</label>
                     </div>
                 </div>
