@@ -30,7 +30,6 @@ const User = ({ user, refetch }) => {
             <td>
                 {role !== 'admin' && <button onClick={handleMakeAdmin} className="btn btn-xs">Make Admin</button>}
             </td>
-            <td><button className="btn btn-warning btn-xs">Remove</button></td>
         </tr >
     );
 };

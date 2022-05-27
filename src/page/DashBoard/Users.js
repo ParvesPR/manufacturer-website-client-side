@@ -25,7 +25,6 @@ const Users = () => {
                         <tr>
                             <th>Index</th>
                             <th>User Category</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

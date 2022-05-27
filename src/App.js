@@ -19,6 +19,7 @@ import RequireAuth from './page/Login/RequireAuth';
 import SignUp from './page/Login/SignUp';
 import NotFound from './page/NotFound/NotFound';
 import Parts from './page/Parts/Parts';
+import Reviews from './page/Reviews/Reviews';
 import Footer from './page/Shared/Footer';
 import NavBar from './page/Shared/NavBar';
 
@@ -63,11 +64,13 @@ function App() {
             </RequireAdmin>
           }></Route>
           <Route index element={<MyProfile></MyProfile>}></Route>
+          <Route path='profile' element={<MyProfile></MyProfile>}></Route>
           <Route path='myreview' element={<MyReview></MyReview>}></Route>
         </Route>
         <Route path='/business' element={<BusinessSummary></BusinessSummary>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        <Route path='/reviews' element={<Reviews></Reviews>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <Toaster></Toaster>
