@@ -1,35 +1,49 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
+import DeleteConfirm from './DeleteConfirm';
+import OrderRow from './OrderRow';
 
 const MyOrders = () => {
-    const [orders, setOrders] = useState([]);
+    const [cancel, setCancel] = useState(null)
     const [user] = useAuthState(auth);
-    const navigate = useNavigate();
 
-
-
-    useEffect(() => {
-        if (user) {
-            fetch(`http://localhost:5000/orders?email=${user.email}`, {
-                method: 'GET',
-                headers: {
-                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-                }
-            })
-                .then(res => {
-                    if (res.status === 401 || res.status === 403) {
-                        signOut(auth);
-                        localStorage.removeItem('accessToken');
-                        navigate('/')
-                    }
-                    return res.json()
-                })
-                .then(data => setOrders(data))
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`http://localhost:5000/orders?email=${user.email}`, {
+        method: 'GET',
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
-    }, [navigate, user])
+    })
+        .then(res => res.json()).then());
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+
+    // useEffect(() => {
+    //     if (user) {
+    //         fetch(`http://localhost:5000/orders?email=${user.email}`, {
+    //             method: 'GET',
+    //             headers: {
+    //                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    //             }
+    //         })
+    //             .then(res => {
+    //                 if (res.status === 401 || res.status === 403) {
+    //                     signOut(auth);
+    //                     localStorage.removeItem('accessToken');
+    //                     navigate('/')
+    //                 }
+    //                 return res.json()
+    //             })
+    //             .then(data => setOrders(data))
+    //     }
+    // }, [navigate, user])
     return (
         <div>
             <h2 className='font-bold text-purple-500 my-5 text-2xl'>My Orders: <span className='text-red-600'>{orders.length}</span></h2>
@@ -48,19 +62,24 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, index) => <tr>
-                                <th>{index + 1}</th>
-                                <td>{order.productName}</td>
-                                <td>${order.price}</td>
-                                <td>{order.email}</td>
-                                <td><button className="btn btn-sm">Delete</button></td>
-                            </tr>)
+                            orders.map((order, index) => <OrderRow
+                                key={order._id}
+                                index={index}
+                                order={order}
+                                refetch={refetch}
+                                setCancel={setCancel}
+                            ></OrderRow>)
 
                         }
 
                     </tbody>
                 </table>
             </div>
+            {cancel && <DeleteConfirm
+                cancel={cancel}
+                refetch={refetch}
+                setCancel={setCancel}
+            ></DeleteConfirm>}
         </div>
     );
 };
