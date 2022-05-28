@@ -26,7 +26,7 @@ const MyOrders = () => {
             <h2 className='font-bold text-white my-5 text-2xl'>My Orders: <span className='text-red-400'>{orders.length}</span></h2>
 
             <div className="overflow-x-auto">
-                <table className="table table-zebra w-full">
+                <table className="table table-zebra table-compact w-full">
 
                     <thead>
                         <tr>

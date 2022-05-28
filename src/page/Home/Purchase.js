@@ -7,7 +7,7 @@ import auth from '../../firebase.init';
 const Purchase = () => {
     const { id } = useParams();
     const [products, setProducts] = useState({});
-    const [num, setNum] = useState(30);
+    const [num, setNum] = useState(0);
     const [user] = useAuthState(auth);
 
     useEffect(() => {
@@ -20,11 +20,20 @@ const Purchase = () => {
         if (num < products.available) {
             setNum(Number(num) + 1);
         }
+        if (num > products.available) {
+            toast.error(`you should order maximum ${products.available}`);
+
+        }
     };
     const decNum = () => {
-        if (num > 30) {
+        if (num > products.minimum) {
             setNum(num - 1);
+        };
+        if (num < products.minimum) {
+            toast.error(`Please order minimum ${products.minimum}`);
+
         }
+
     }
     const handleChange = (e) => {
         setNum(e.target.value);
@@ -55,7 +64,7 @@ const Purchase = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
-                    toast.success('Order success')
+                    toast.success('Order success. Please check My orders for pay')
                     event.target.reset();
                 }
             })
@@ -91,6 +100,7 @@ const Purchase = () => {
                 <div className="card md:max-w-md bg-base-100 shadow-xl">
                     <div className="card-body">
                         <h2 className="text-center text-3xl font-bold text-purple-300">Complete Your Order: <span className='text-2xl text-slate-700'>{products.name}</span></h2>
+
                         <form onSubmit={handleOrder} className='form-control w-full text-xl'>
                             <label className="label">
                                 <span className="label-text font-semibold text-lg">Name</span>
@@ -122,8 +132,7 @@ const Purchase = () => {
                             </label>
                             <input type="number" name='phone' className="input input-bordered w-full input-sm max-w-xs mb-4" required />
 
-
-                            <input type="submit" value="Order" className="btn btn-accent uppercase w-full max-w-xs" />
+                            <input disabled={num < products.minimum || num > products.available} type="submit" value="Order" className="btn btn-accent uppercase w-full max-w-xs" />
 
 
                         </form>
