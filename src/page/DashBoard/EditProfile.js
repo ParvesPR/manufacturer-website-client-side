@@ -33,7 +33,7 @@ const EditProfile = () => {
                         education: data.education,
                         img: image
                     }
-                    fetch('http://localhost:5000/myprofile', {
+                    fetch('https://salty-tor-00917.herokuapp.com/myprofile', {
                         method: 'POST',
                         body: JSON.stringify(NewUser),
                         headers: {

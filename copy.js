@@ -5,7 +5,7 @@ const Information = () => {
     const [num, setNum] = useState(5);
 
     useEffect(() => {
-        const url = `http://localhost:5000/product/${id}`;
+        const url = `https://salty-tor-00917.herokuapp.com/product/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data[0]))
@@ -37,7 +37,7 @@ const Information = () => {
             oreder: user.email,
         }
 
-        fetch('http://localhost:5000/product', {
+        fetch('https://salty-tor-00917.herokuapp.com/product', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

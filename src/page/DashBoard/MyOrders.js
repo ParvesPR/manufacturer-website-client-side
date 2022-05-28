@@ -10,7 +10,7 @@ const MyOrders = () => {
     const [cancel, setCancel] = useState(null)
     const [user] = useAuthState(auth);
 
-    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`http://localhost:5000/orders?email=${user.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`https://salty-tor-00917.herokuapp.com/orders?email=${user.email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

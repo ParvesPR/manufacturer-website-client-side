@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading';
 import AllOrders from './AllOrders';
 
 const ManageOrders = () => {
-    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch('http://localhost:5000/allorders', {
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch('https://salty-tor-00917.herokuapp.com/allorders', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

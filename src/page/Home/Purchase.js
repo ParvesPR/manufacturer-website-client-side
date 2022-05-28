@@ -11,7 +11,7 @@ const Purchase = () => {
     const [user] = useAuthState(auth);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/parts/${id}`)
+        fetch(`https://salty-tor-00917.herokuapp.com/parts/${id}`)
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [products, id]);
@@ -53,7 +53,7 @@ const Purchase = () => {
         }
 
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://salty-tor-00917.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

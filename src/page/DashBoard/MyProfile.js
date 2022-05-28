@@ -11,7 +11,7 @@ const MyProfile = () => {
     useEffect(() => {
 
         const run = async () => {
-            await axios.get(`http://localhost:5000/myprofile/${user.email}`,)
+            await axios.get(`https://salty-tor-00917.herokuapp.com/myprofile/${user.email}`,)
                 .then(function (res) {
                     setLoadProfile(res.data)
                 })

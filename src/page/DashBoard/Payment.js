@@ -9,7 +9,7 @@ import CheckOutForm from './CheckOutForm';
 const stripePromise = loadStripe('pk_test_51L3yctBfaPodgnMk9Qf1cRhBl3WolsCEFqw9FAdedZUXRJoahZmnkh0taI8DRpM7sSNnSMW1UV1pSbwKPKCvuUE6004olGTXz4');
 const Payment = () => {
     const { id } = useParams();
-    const { data: parts, isLoading } = useQuery(['Order', id], () => fetch(`http://localhost:5000/product/${id}`, {
+    const { data: parts, isLoading } = useQuery(['Order', id], () => fetch(`https://salty-tor-00917.herokuapp.com/product/${id}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

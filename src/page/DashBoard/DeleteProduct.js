@@ -5,7 +5,7 @@ const DeleteProduct = ({ manageProduct, setManageProduct, refetch }) => {
     const { name, _id, } = manageProduct;
 
     const handleDelete = () => {
-        fetch(`http://localhost:5000/manageproducts/${_id}`, {
+        fetch(`https://salty-tor-00917.herokuapp.com/manageproducts/${_id}`, {
 
             method: 'DELETE',
             headers: {
