@@ -1,11 +1,12 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const EditProfile = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [user] = useAuthState(auth);
 
     const imgStorageKey = 'e2d45fddfbfdb6662a3ef75d64ca3f0b';
@@ -43,9 +44,13 @@ const EditProfile = () => {
                         .then(res => res.json())
                         .then(result => {
                             console.log(result);
+                            if (result.insertedId) {
+                                toast.success('Updated Profile')
+                            }
                             if (result) {
                                 navigate('/dashboard')
                             }
+                            reset();
                         })
                 }
             })
@@ -60,7 +65,7 @@ const EditProfile = () => {
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" placeholder="Email Address"
+                        <input readOnly value={user.email} type="email" placeholder="Email Address"
                             className="input input-bordered w-full max-w-xs"
                             {...register("email", {
                                 required: {
@@ -80,7 +85,7 @@ const EditProfile = () => {
                         <label className="label">
                             <span className="label-text">Your Name</span>
                         </label>
-                        <input type="text" placeholder="Your name"
+                        <input readOnly value={user.displayName} type="text" placeholder="Your name"
                             className="input input-bordered w-full max-w-xs"
                             {...register("yourName", {
                                 required: {
