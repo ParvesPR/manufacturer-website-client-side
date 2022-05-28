@@ -5,6 +5,7 @@ import Blogs from './page/Blogs/Blogs';
 import BusinessSummary from './page/BusinessSummary/BusinessSummary';
 import AddProduct from './page/DashBoard/AddProduct';
 import DashBoard from './page/DashBoard/DashBoard';
+import EditProfile from './page/DashBoard/EditProfile';
 import ManageOrders from './page/DashBoard/ManageOrders';
 import ManageProducts from './page/DashBoard/ManageProducts';
 import MyOrders from './page/DashBoard/MyOrders';
@@ -66,6 +67,7 @@ function App() {
           }></Route>
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path='profile' element={<MyProfile></MyProfile>}></Route>
+          <Route path='profile/editprofile' element={<EditProfile></EditProfile>}></Route>
           <Route path='myreview' element={<MyReview></MyReview>}></Route>
         </Route>
         <Route path='/business' element={<BusinessSummary></BusinessSummary>}></Route>

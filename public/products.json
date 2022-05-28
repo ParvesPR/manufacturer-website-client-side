@@ -20,10 +20,37 @@
     {
         "_id": 3,
         "name": "Specter Brake Kit",
-        "image": "https://redparts.woocommerce.themeforest.scompiler.ru/theme/wp-content/uploads/2021/01/product-22-1.jpg",
+        "image": "http://apar.bdiakcml8h-e92498n216kr.p.runcloud.link//wp-content/uploads/2020/11/steering-clipart-racing-wheel-17.png",
         "price": 799,
         "minimum": 40,
         "available": 127,
         "description": "Wheels is one of the top-rated elegant alloys that will undoubtedly enhance the look of your vehicle! This intricate patterned design is highlighted by 8 classic silver and black glasslike sculpted spokes."
+    },
+    {
+        "_id": 4,
+        "name": "Audi R8 Steering",
+        "image": "https://redparts.woocommerce.themeforest.scompiler.ru/theme/wp-content/uploads/2021/01/product-22-1.jpg",
+        "price": 1099,
+        "minimum": 60,
+        "available": 270,
+        "description": "The steering wheel in Audi R8 also comes with the gearshift function and has shift paddles with aluminium look for the automatic S Tronic gearbox. Steering mounted controls help the driver concentrate on driving by accessing functions without removing hands from the steering wheel or eyes from the road."
+    },
+    {
+        "_id": 5,
+        "name": "Front bumper Audi R8 Mk.1",
+        "image": "https://media.istockphoto.com/photos/three-different-car-bumpers-stacked-picture-id472463980?b=1&k=20&m=472463980&s=170667a&w=0&h=6P-sO2yq3DOShm20XzGQCaPUWVhbYk2xnsT7FQcrYtw=",
+        "price": 1199,
+        "minimum": 140,
+        "available": 310,
+        "description": "If you are a lucky Audi R8 MK.1 owner and want to equip your vehicle with the best-quality tuning components, you should definitely familiarize yourself with the Maxton Design assortment. Here you can find advanced splitters, spoilers, side skirts, and bumpers. Simply, anything you will require to spice up the visuals of your car and make them even more eye-catching. Especially for Audi R8 MK.1 this exceptional innovative front bumper was made."
+    },
+    {
+        "_id": 6,
+        "name": "Rear view Heated Mirror",
+        "image": "https://ae01.alicdn.com/kf/S84df120d1ebb440ea25397339a07fa38v/Car-Rearview-Heated-Mirror-Glass-For-Audi-A3-A4-A6-2001-2008-Left-Right-Side-Wing.jpg_Q90.jpg_.webp",
+        "price": 49,
+        "minimum": 500,
+        "available": 3310,
+        "description": "Clear flat mirror glass with rear back plate. Wide angle for better view and safely drive.Material Glass + plastic Glass color White Size Approx. 17 x 10.8cm/6.69 x 4.25 Placement on vehicle Left/Right Fit for Part Number 8E0857535E 8E0857536E."
     }
 ]
