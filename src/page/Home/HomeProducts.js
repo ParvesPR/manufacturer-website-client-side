@@ -5,7 +5,7 @@ const HomeProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('https://salty-tor-00917.herokuapp.com/homepage')
+        fetch('http://localhost:5000/homepage')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);

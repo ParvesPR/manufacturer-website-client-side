@@ -30,7 +30,7 @@ const AddProduct = () => {
                         image: image
                     }
                     // send to your database 
-                    fetch('https://salty-tor-00917.herokuapp.com/addproduct', {
+                    fetch('http://localhost:5000/addproduct', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

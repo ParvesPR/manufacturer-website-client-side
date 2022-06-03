@@ -6,7 +6,7 @@ import DeleteProduct from './DeleteProduct';
 
 const ManageProducts = () => {
     const [manageProduct, setManageProduct] = useState(null)
-    const { data: products, isLoading, refetch } = useQuery('manage', () => fetch('https://salty-tor-00917.herokuapp.com/manageproducts', {
+    const { data: products, isLoading, refetch } = useQuery('manage', () => fetch('http://localhost:5000/manageproducts', {
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
