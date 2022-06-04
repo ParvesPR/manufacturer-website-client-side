@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const OrderRow = ({ order, index, setCancel }) => {
+    console.log(order)
     const { productName, price, email, _id } = order
     return (
         <tr>

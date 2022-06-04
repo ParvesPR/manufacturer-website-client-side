@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import AllOrders from './AllOrders';
+import DeleteOrder from './DeleteOrder';
 
 const ManageOrders = () => {
+    const [deleteOrder, setDeleteOrder] = useState(null);
     const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch('http://localhost:5000/allorders', {
         method: 'GET',
         headers: {
@@ -22,10 +24,15 @@ const ManageOrders = () => {
 
                     <thead>
                         <tr>
-                            <th>Index</th>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                            <th>User</th>
+                            <th>SL</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Products Name</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                            <th>Delivery</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,6 +42,7 @@ const ManageOrders = () => {
                                 key={order._id}
                                 order={order}
                                 index={index}
+                                setDeleteOrder={setDeleteOrder}
                                 refetch={refetch}
                             ></AllOrders>)
                         }
@@ -42,6 +50,13 @@ const ManageOrders = () => {
                     </tbody>
                 </table>
             </div>
+            {
+                deleteOrder && <DeleteOrder
+                    deleteOrder={deleteOrder}
+                    refetch={refetch}
+                    setDeleteOrder={setDeleteOrder}
+                ></DeleteOrder>
+            }
         </div>
     );
 };

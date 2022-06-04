@@ -11,6 +11,7 @@ const CheckOutForm = ({ parts }) => {
     const [clientSecret, setClientSecret] = useState('')
 
     const { _id, price, email } = parts;
+    const status = 'pending';
 
     useEffect(() => {
         fetch('http://localhost:5000/create-payment-intent', {
@@ -64,7 +65,7 @@ const CheckOutForm = ({ parts }) => {
                 },
             },
         );
-
+        const status = 'pending';
         if (intentError) {
             setCardError(intentError?.message);
             setProcessing(false)
@@ -79,7 +80,8 @@ const CheckOutForm = ({ parts }) => {
             //send to db
             const payment = {
                 parts: _id,
-                transactionId: paymentIntent.id
+                transactionId: paymentIntent.id,
+                status: status
 
             }
             fetch(`http://localhost:5000/product/${_id}`, {
